@@ -21,7 +21,9 @@ jobs:
           sudo DEBIAN_FRONTEND=noninteractive apt install -yq --no-install-recommends \
               meson
       - name: Run meson fmt
-        run: meson format --check-diff --recursive
+        run: meson format --check-only --recursive
+        # ^^^ Switch from --check-only to --check-diff once they finally update
+        # meson.
       - name: Run clang-format
         uses: egor-tensin/clang-format@v1
 
