@@ -46,11 +46,10 @@ SDL_AppResult SDL_AppIterate(void*) {
     // [0, A] into a position in [0, B], you divide by A and multiply by B.
 
     rgb[active_color] = std::sin(position / color_duration * SDL_PI_D);
-    // TODO: ^^^ why on earth did I decide to use the sine function?
-    // You can easily normalize a value over a range without using any sine
-    // function whatsoever: just divide by the range length, no? The sine
-    // function was initially picked because it conveniently returns values
-    // in [0, 1] in the [0, Pi] range.
+    // The sine function is used here because it conveniently produces values
+    // in the range of [0, 1] for [0, Pi]. I remember trying some simpler
+    // arithmetics, but that didn't do the trick. TODO: make a definitive
+    // ruling on this?
 
     // SDL_Log("rgb: %f %f %f", rgb[0], rgb[1], rgb[2]);
 
