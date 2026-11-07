@@ -1,3 +1,7 @@
+// In this example, I want to cycle through RGB values in order; so, red starts
+// at 0, incrementally gets to 1, goes back to 0 again; after that, green does
+// the same (red & blue staying at 0 meanwhile), and blue after that.
+
 #include <sdl_stub.hpp>
 
 #define SDL_MAIN_USE_CALLBACKS 1
@@ -10,11 +14,6 @@ SDL_AppResult SDL_AppIterate(void*) {
     const auto counter = sdl_stub::now() - sdl_stub::app.start;
     // This is the main, ever-increasing counter - the floating-point value of
     // seconds passed since the program started.
-
-    // In this example, I want to cycle through RGB values in order; so, red
-    // starts at 0, incrementally gets to 1, goes back to 0 again; after that,
-    // green does the same (red & blue staying at 0 meanwhile), and blue after
-    // that.
 
     // All colors are 0 for now.
     std::array<float, 3> rgb{};
