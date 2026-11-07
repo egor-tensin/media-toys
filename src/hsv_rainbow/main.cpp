@@ -30,9 +30,9 @@ struct RGB {
     float b = 0.f;
 
     static constexpr RGB from_hsv(const HSV& hsv) {
-        const float c = hsv.v * hsv.s;
-        const float x = c * (1.f - std::abs(std::fmod(hsv.h / 60.f, 2.f) - 1.f));
-        const float m = hsv.v - c;
+        const auto c = hsv.v * hsv.s;
+        const auto x = c * (1.f - std::abs(std::fmod(hsv.h / 60.f, 2.f) - 1.f));
+        const auto m = hsv.v - c;
 
         RGB result{};
 
@@ -70,7 +70,7 @@ SDL_AppResult SDL_AppIterate(void*) {
     // The cycle duration for the rainbow.
     static constexpr auto cycle_duration = 10.;
 
-    const float hue =
+    const auto hue =
         static_cast<float>(std::fmod(counter, cycle_duration) / cycle_duration * 360.0);
 
     const RGB color = RGB::from_hsv({
