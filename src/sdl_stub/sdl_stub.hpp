@@ -20,10 +20,10 @@ inline double now() {
 
 } // namespace sdl_stub
 
+// Oh my fucking god, recent clang-format version strip the last empty line in
+// "extern" god knows for what reason.
 extern "C" {
-
 SDL_AppResult SDL_AppInit(void**, int, char*[]);
 SDL_AppResult SDL_AppEvent(void*, SDL_Event*);
 void SDL_AppQuit(void*, SDL_AppResult);
-
 }
