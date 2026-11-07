@@ -31,6 +31,7 @@ jobs:
           - debug
           - release
     runs-on: ubuntu-26.04
+    # ^^^ Hardcoded Resolute for libsdl3
     name: |
       Build: ${{ matrix.configuration }}
     steps:
