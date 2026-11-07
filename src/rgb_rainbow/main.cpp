@@ -72,7 +72,7 @@ SDL_AppResult SDL_AppIterate(void*) {
     const auto& this_color = COLORS[this_color_idx];
     const auto& next_color = COLORS[next_color_idx];
 
-    const RGB new_color = this_color.lerp(next_color, color_position / color_duration);
+    const auto new_color = this_color.lerp(next_color, color_position / color_duration);
 
     SDL_SetRenderDrawColorFloat(
         sdl_stub::app.renderer, new_color.r, new_color.g, new_color.b, SDL_ALPHA_OPAQUE_FLOAT
