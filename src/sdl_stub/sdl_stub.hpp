@@ -5,8 +5,8 @@
 namespace sdl_stub {
 
 struct App {
-    static constexpr size_t WINDOW_WIDTH = 640;
-    static constexpr size_t WINDOW_HEIGHT = 480;
+    static constexpr size_t WINDOW_WIDTH = 800;
+    static constexpr size_t WINDOW_HEIGHT = 600;
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;
     double start = 0.;
