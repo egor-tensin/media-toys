@@ -1,29 +1,13 @@
+#include <sdl_stub.hpp>
+
 #define SDL_MAIN_USE_CALLBACKS 1
-#include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 
 #include <array>
 #include <cmath>
 
-namespace {
-
-struct App {
-    static constexpr size_t WINDOW_WIDTH = 640;
-    static constexpr size_t WINDOW_HEIGHT = 480;
-    SDL_Window* window = nullptr;
-    SDL_Renderer* renderer = nullptr;
-} app;
-
-double start = 0.;
-
-double now() {
-    return static_cast<double>(SDL_GetTicks()) / 1000.;
-}
-
-} // namespace
-
 SDL_AppResult SDL_AppIterate(void*) {
-    const auto counter = now() - start;
+    const auto counter = sdl_stub::now() - sdl_stub::app.start;
     // This is the main, ever-increasing counter - the floating-point value of
     // seconds passed since the program started.
 
@@ -66,40 +50,12 @@ SDL_AppResult SDL_AppIterate(void*) {
 
     // SDL_Log("rgb: %f %f %f", rgb[0], rgb[1], rgb[2]);
 
-    SDL_SetRenderDrawColorFloat(app.renderer, rgb[0], rgb[1], rgb[2], SDL_ALPHA_OPAQUE_FLOAT);
-
-    SDL_RenderClear(app.renderer);
-    SDL_RenderPresent(app.renderer);
-
-    return SDL_APP_CONTINUE;
-}
-
-SDL_AppResult SDL_AppInit(void**, int, char*[]) {
-    if (!SDL_Init(SDL_INIT_VIDEO)) {
-        SDL_Log("Couldn't initialize SDL: %s", SDL_GetError());
-        return SDL_APP_FAILURE;
-    }
-
-    if (!SDL_CreateWindowAndRenderer(
-            "rgb", app.WINDOW_WIDTH, app.WINDOW_HEIGHT, 0, &app.window, &app.renderer
-        )) {
-        SDL_Log("Couldn't create window/renderer: %s", SDL_GetError());
-        return SDL_APP_FAILURE;
-    }
-    SDL_SetRenderLogicalPresentation(
-        app.renderer, app.WINDOW_WIDTH, app.WINDOW_HEIGHT, SDL_LOGICAL_PRESENTATION_LETTERBOX
+    SDL_SetRenderDrawColorFloat(
+        sdl_stub::app.renderer, rgb[0], rgb[1], rgb[2], SDL_ALPHA_OPAQUE_FLOAT
     );
 
-    start = now();
+    SDL_RenderClear(sdl_stub::app.renderer);
+    SDL_RenderPresent(sdl_stub::app.renderer);
 
     return SDL_APP_CONTINUE;
 }
-
-SDL_AppResult SDL_AppEvent(void*, SDL_Event* event) {
-    if (event->type == SDL_EVENT_QUIT) {
-        return SDL_APP_SUCCESS;
-    }
-    return SDL_APP_CONTINUE;
-}
-
-void SDL_AppQuit(void*, SDL_AppResult) {}

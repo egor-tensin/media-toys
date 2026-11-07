@@ -1,3 +1,2 @@
-sdl = dependency('sdl3')
-
+subdir('sdl_stub')
 subdir('rgb')
