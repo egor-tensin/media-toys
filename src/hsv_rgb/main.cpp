@@ -1,6 +1,8 @@
 // I don't understand the HSV color model, and I'm trying to, as best as I can.
 //
 // For more details about HSV, you can hopefully see the hsv_rainbow example.
+//
+// This is analagous to the "rgb" example, but in the HSV color model.
 
 #include <hsv.hpp>
 #include <rgb.hpp>
@@ -17,11 +19,9 @@ SDL_AppResult SDL_AppIterate(void*) {
 
     static constexpr std::array<float, 3> rgb{};
 
-    // I want for each color to take 1.5 seconds to go from 0 to 1.
-    static constexpr auto phase_duration = 1.5f;
-    // The complete color cycle duration (going up and down).
+    // I want for each color to take 2 seconds to go from 0 to 1.
+    static constexpr auto phase_duration = 2.f;
     static constexpr auto color_duration = phase_duration * 2;
-    // The complete cycle duration for all colors.
     static constexpr auto cycle_duration = color_duration * rgb.size();
 
     const auto color_position = std::fmod(counter, color_duration);
@@ -29,10 +29,12 @@ SDL_AppResult SDL_AppIterate(void*) {
 
     const auto active_color = static_cast<size_t>(cycle_position / color_duration);
 
+    const auto t = color_position / color_duration;
+
     const RGB color = RGB::from_hsv({
         .h = active_color * 120.f,
         .s = 1.f,
-        .v = std::sin(color_position / color_duration * SDL_PI_F),
+        .v = 1.f - std::abs(2.f * t - 1),
     });
 
     SDL_SetRenderDrawColorFloat(
