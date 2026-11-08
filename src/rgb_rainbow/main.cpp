@@ -13,8 +13,6 @@
 
 SDL_AppResult SDL_AppIterate(void*) {
     const auto counter = sdl_stub::now() - sdl_stub::app.start;
-    // This is the main, ever-increasing counter - the floating-point value of
-    // seconds passed since the program started.
 
     static constexpr std::array COLORS{
         // These particular values were picked from somewhere on the web.
@@ -31,7 +29,7 @@ SDL_AppResult SDL_AppIterate(void*) {
         // RGB::from_hex(0xFF'FF'FF),
     };
 
-    // The cycle duration for the rainbow.
+    // The cycle duration for the full rainbow.
     static constexpr auto cycle_duration = 10.f;
     const auto cycle_position = std::fmod(counter, cycle_duration);
 
@@ -44,6 +42,8 @@ SDL_AppResult SDL_AppIterate(void*) {
     const auto& this_color = COLORS[this_color_idx];
     const auto& next_color = COLORS[next_color_idx];
 
+    // This is basically a + t(b - a) for every color component.
+    // So, new_color = this_color + color_position / color_duration * (next_color - this_color).
     const auto new_color = this_color.lerp(next_color, color_position / color_duration);
 
     SDL_SetRenderDrawColorFloat(

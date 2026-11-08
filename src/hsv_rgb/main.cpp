@@ -14,10 +14,8 @@
 
 SDL_AppResult SDL_AppIterate(void*) {
     const auto counter = sdl_stub::now() - sdl_stub::app.start;
-    // This is the main, ever-increasing counter - the floating-point value of
-    // seconds passed since the program started.
 
-    std::array<float, 3> rgb{};
+    static constexpr std::array<float, 3> rgb{};
 
     // I want for each color to take 1.5 seconds to go from 0 to 1.
     static constexpr auto phase_duration = 1.5f;
@@ -27,8 +25,8 @@ SDL_AppResult SDL_AppIterate(void*) {
     static constexpr auto cycle_duration = color_duration * rgb.size();
 
     const auto color_position = std::fmod(counter, color_duration);
-
     const auto cycle_position = std::fmod(counter, cycle_duration);
+
     const auto active_color = static_cast<size_t>(cycle_position / color_duration);
 
     const RGB color = RGB::from_hsv({

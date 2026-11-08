@@ -14,10 +14,8 @@
 
 SDL_AppResult SDL_AppIterate(void*) {
     const auto counter = sdl_stub::now() - sdl_stub::app.start;
-    // This is the main, ever-increasing counter - the floating-point value of
-    // seconds passed since the program started.
 
-    // The cycle duration for the rainbow.
+    // The cycle duration for the full rainbow.
     static constexpr auto cycle_duration = 10.f;
 
     const auto hue = std::fmod(counter, cycle_duration) / cycle_duration * 360.f;

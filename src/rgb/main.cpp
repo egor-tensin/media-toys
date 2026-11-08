@@ -35,17 +35,17 @@ SDL_AppResult SDL_AppIterate(void*) {
     // phase, then goes back to 0 in the same time.
 
     // Where are we in the cycle?
-    const auto position = std::fmod(counter, color_duration);
+    const auto color_position = std::fmod(counter, color_duration);
 
-    // This "position" value should now be turned into a value between 0 and 1;
-    // increasing for the first phase, and decreasing for the second phase. The
-    // sine function works great for that, in the range [0, Pi]. So, the first
-    // phase is [0, Pi/2] and the second phase is [Pi/2, Pi].
+    // This "color_position" value should now be turned into a value between 0
+    // and 1; increasing for the first phase, and decreasing for the second
+    // phase. The sine function works great for that, in the range [0, Pi]. So,
+    // the first phase is [0, Pi/2] and the second phase is [Pi/2, Pi].
 
     // I'm old and stupid now, so I'll make this note: to turn position X in
     // [0, A] into a position in [0, B], you divide by A and multiply by B.
 
-    rgb[active_color] = std::sin(position / color_duration * SDL_PI_F);
+    rgb[active_color] = std::sin(color_position / color_duration * SDL_PI_F);
     // The sine function is used here because it conveniently produces values
     // in the range of [0, 1] for [0, Pi]. I remember trying some simpler
     // arithmetics, but that didn't do the trick. TODO: make a definitive
