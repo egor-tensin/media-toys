@@ -4,6 +4,6 @@ executable(
         'main.cpp',
     ],
     dependencies: [
-        libsdl_stub,
+        libsdl_helper,
     ],
 )

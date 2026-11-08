@@ -6,7 +6,7 @@
 
 #include <array>
 
-namespace sdl_stub {
+namespace sdl_helper {
 
 struct App {
     static constexpr size_t WINDOW_WIDTH = 800;
@@ -26,7 +26,7 @@ void fill(const RGB& rgb);
 void fill(float r, float g, float b);
 void fill(const std::array<float, 3>&);
 
-} // namespace sdl_stub
+} // namespace sdl_helper
 
 // Oh my fucking god, recent clang-format version strip the last empty line in
 // "extern" god knows for what reason.

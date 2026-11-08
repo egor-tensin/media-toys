@@ -5,6 +5,6 @@ executable(
     ],
     dependencies: [
         libcolor,
-        libsdl_stub,
+        libsdl_helper,
     ],
 )

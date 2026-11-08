@@ -6,7 +6,7 @@
 
 #include <hsv.hpp>
 #include <rgb.hpp>
-#include <sdl_stub.hpp>
+#include <sdl_helper.hpp>
 
 #define SDL_MAIN_USE_CALLBACKS 1
 #include <SDL3/SDL_main.h>
@@ -15,7 +15,7 @@
 #include <cmath>
 
 SDL_AppResult SDL_AppIterate(void*) {
-    const auto counter = sdl_stub::now() - sdl_stub::app.start;
+    const auto counter = sdl_helper::now() - sdl_helper::app.start;
 
     static constexpr std::array<float, 3> rgb{};
 
@@ -37,6 +37,6 @@ SDL_AppResult SDL_AppIterate(void*) {
         .v = 1.f - std::abs(2.f * t - 1),
     });
 
-    sdl_stub::fill(color);
+    sdl_helper::fill(color);
     return SDL_APP_CONTINUE;
 }

@@ -2,7 +2,7 @@
 // calculate the color values instead of simpler arithmetics; see the "rgb"
 // example for more info.
 
-#include <sdl_stub.hpp>
+#include <sdl_helper.hpp>
 
 #define SDL_MAIN_USE_CALLBACKS 1
 #include <SDL3/SDL_main.h>
@@ -11,7 +11,7 @@
 #include <cmath>
 
 SDL_AppResult SDL_AppIterate(void*) {
-    const auto counter = sdl_stub::now() - sdl_stub::app.start;
+    const auto counter = sdl_helper::now() - sdl_helper::app.start;
 
     std::array<float, 3> rgb{};
 
@@ -32,6 +32,6 @@ SDL_AppResult SDL_AppIterate(void*) {
 
     // SDL_Log("rgb: %f %f %f", rgb[0], rgb[1], rgb[2]);
 
-    sdl_stub::fill(rgb[0], rgb[1], rgb[2]);
+    sdl_helper::fill(rgb[0], rgb[1], rgb[2]);
     return SDL_APP_CONTINUE;
 }
