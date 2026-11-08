@@ -64,12 +64,6 @@ SDL_AppResult SDL_AppIterate(void*) {
 
     // SDL_Log("rgb: %f %f %f", rgb[0], rgb[1], rgb[2]);
 
-    SDL_SetRenderDrawColorFloat(
-        sdl_stub::app.renderer, rgb[0], rgb[1], rgb[2], SDL_ALPHA_OPAQUE_FLOAT
-    );
-
-    SDL_RenderClear(sdl_stub::app.renderer);
-    SDL_RenderPresent(sdl_stub::app.renderer);
-
+    sdl_stub::fill(rgb);
     return SDL_APP_CONTINUE;
 }

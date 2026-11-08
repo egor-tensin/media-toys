@@ -46,12 +46,6 @@ SDL_AppResult SDL_AppIterate(void*) {
     // So, new_color = this_color + color_position / color_duration * (next_color - this_color).
     const auto new_color = this_color.lerp(next_color, color_position / color_duration);
 
-    SDL_SetRenderDrawColorFloat(
-        sdl_stub::app.renderer, new_color.r, new_color.g, new_color.b, SDL_ALPHA_OPAQUE_FLOAT
-    );
-
-    SDL_RenderClear(sdl_stub::app.renderer);
-    SDL_RenderPresent(sdl_stub::app.renderer);
-
+    sdl_stub::fill(new_color);
     return SDL_APP_CONTINUE;
 }

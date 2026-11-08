@@ -1,12 +1,29 @@
 #include "sdl_stub.hpp"
 
+#include <rgb.hpp>
+
 #include <SDL3/SDL.h>
 
 namespace sdl_stub {
 
 App app;
 
+void fill(float r, float g, float b) {
+    SDL_SetRenderDrawColorFloat(sdl_stub::app.renderer, r, g, b, SDL_ALPHA_OPAQUE_FLOAT);
+
+    SDL_RenderClear(sdl_stub::app.renderer);
+    SDL_RenderPresent(sdl_stub::app.renderer);
 }
+
+void fill(const std::array<float, 3>& rgb) {
+    fill(rgb[0], rgb[1], rgb[2]);
+}
+
+void fill(const RGB& rgb) {
+    fill(rgb.r, rgb.g, rgb.b);
+}
+
+} // namespace sdl_stub
 
 SDL_AppResult SDL_AppInit(void**, int, char*[]) {
     if (!SDL_Init(SDL_INIT_VIDEO)) {

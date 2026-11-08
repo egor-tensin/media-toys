@@ -7,10 +7,14 @@ impl = static_library(
     ],
     dependencies: [
         actual_sdl,
+        libcolor,
     ],
 )
 
 libsdl_stub = declare_dependency(
     link_with: impl,
     include_directories: include_directories('.'),
+    dependencies: [
+        libcolor,
+    ],
 )

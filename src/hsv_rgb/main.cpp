@@ -37,12 +37,6 @@ SDL_AppResult SDL_AppIterate(void*) {
         .v = 1.f - std::abs(2.f * t - 1),
     });
 
-    SDL_SetRenderDrawColorFloat(
-        sdl_stub::app.renderer, color.r, color.g, color.b, SDL_ALPHA_OPAQUE_FLOAT
-    );
-
-    SDL_RenderClear(sdl_stub::app.renderer);
-    SDL_RenderPresent(sdl_stub::app.renderer);
-
+    sdl_stub::fill(color);
     return SDL_APP_CONTINUE;
 }

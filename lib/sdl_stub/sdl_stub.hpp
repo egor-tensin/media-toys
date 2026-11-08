@@ -1,6 +1,10 @@
 #pragma once
 
+#include <rgb.hpp>
+
 #include <SDL3/SDL.h>
+
+#include <array>
 
 namespace sdl_stub {
 
@@ -17,6 +21,10 @@ extern App app;
 inline float now() {
     return static_cast<float>(SDL_GetTicks()) / 1000.;
 }
+
+void fill(const RGB& rgb);
+void fill(float r, float g, float b);
+void fill(const std::array<float, 3>&);
 
 } // namespace sdl_stub
 
