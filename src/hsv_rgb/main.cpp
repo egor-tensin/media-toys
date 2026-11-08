@@ -20,7 +20,7 @@ SDL_AppResult SDL_AppIterate(void*) {
     std::array<float, 3> rgb{};
 
     // I want for each color to take 1.5 seconds to go from 0 to 1.
-    static constexpr auto phase_duration = 1.5;
+    static constexpr auto phase_duration = 1.5f;
     // The complete color cycle duration (going up and down).
     static constexpr auto color_duration = phase_duration * 2;
     // The complete cycle duration for all colors.
@@ -34,7 +34,7 @@ SDL_AppResult SDL_AppIterate(void*) {
     const RGB color = RGB::from_hsv({
         .h = active_color * 120.f,
         .s = 1.f,
-        .v = static_cast<float>(std::sin(color_position / color_duration * SDL_PI_D)),
+        .v = std::sin(color_position / color_duration * SDL_PI_F),
     });
 
     SDL_SetRenderDrawColorFloat(

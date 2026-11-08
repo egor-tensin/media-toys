@@ -9,13 +9,13 @@ struct App {
     static constexpr size_t WINDOW_HEIGHT = 600;
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;
-    double start = 0.;
+    float start = 0.f;
 };
 
 extern App app;
 
-inline double now() {
-    return static_cast<double>(SDL_GetTicks()) / 1000.;
+inline float now() {
+    return static_cast<float>(SDL_GetTicks()) / 1000.;
 }
 
 } // namespace sdl_stub

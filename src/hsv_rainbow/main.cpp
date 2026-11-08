@@ -18,10 +18,9 @@ SDL_AppResult SDL_AppIterate(void*) {
     // seconds passed since the program started.
 
     // The cycle duration for the rainbow.
-    static constexpr auto cycle_duration = 10.;
+    static constexpr auto cycle_duration = 10.f;
 
-    const auto hue =
-        static_cast<float>(std::fmod(counter, cycle_duration) / cycle_duration * 360.0);
+    const auto hue = std::fmod(counter, cycle_duration) / cycle_duration * 360.f;
 
     const RGB color = RGB::from_hsv({
         .h = hue,

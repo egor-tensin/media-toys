@@ -19,7 +19,7 @@ SDL_AppResult SDL_AppIterate(void*) {
     std::array<float, 3> rgb{};
 
     // I want for each color to take 1.5 seconds to go from 0 to 1.
-    static constexpr auto phase_duration = 1.5;
+    static constexpr auto phase_duration = 1.5f;
     // The complete color cycle duration (going up and down).
     static constexpr auto color_duration = phase_duration * 2;
     // The complete cycle duration for all colors.
@@ -45,7 +45,7 @@ SDL_AppResult SDL_AppIterate(void*) {
     // I'm old and stupid now, so I'll make this note: to turn position X in
     // [0, A] into a position in [0, B], you divide by A and multiply by B.
 
-    rgb[active_color] = std::sin(position / color_duration * SDL_PI_D);
+    rgb[active_color] = std::sin(position / color_duration * SDL_PI_F);
     // The sine function is used here because it conveniently produces values
     // in the range of [0, 1] for [0, Pi]. I remember trying some simpler
     // arithmetics, but that didn't do the trick. TODO: make a definitive

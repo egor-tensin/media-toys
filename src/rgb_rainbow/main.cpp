@@ -18,21 +18,21 @@ SDL_AppResult SDL_AppIterate(void*) {
 
     static constexpr std::array COLORS{
         // These particular values were picked from somewhere on the web.
-        RGB::decode(0xFF'00'00),
-        RGB::decode(0xFF'7F'00),
-        RGB::decode(0xFF'FF'00),
-        RGB::decode(0x00'FF'00),
-        RGB::decode(0x00'00'FF),
-        RGB::decode(0x4B'00'82),
-        RGB::decode(0x8F'00'FF),
+        RGB::from_hex(0xFF'00'00),
+        RGB::from_hex(0xFF'7F'00),
+        RGB::from_hex(0xFF'FF'00),
+        RGB::from_hex(0x00'FF'00),
+        RGB::from_hex(0x00'00'FF),
+        RGB::from_hex(0x4B'00'82),
+        RGB::from_hex(0x8F'00'FF),
 
         // Black-to-white:
-        // RGB::decode(0x00'00'00),
-        // RGB::decode(0xFF'FF'FF),
+        // RGB::from_hex(0x00'00'00),
+        // RGB::from_hex(0xFF'FF'FF),
     };
 
     // The cycle duration for the rainbow.
-    static constexpr auto cycle_duration = 10.;
+    static constexpr auto cycle_duration = 10.f;
     const auto cycle_position = std::fmod(counter, cycle_duration);
 
     static constexpr auto color_duration = cycle_duration / COLORS.size();

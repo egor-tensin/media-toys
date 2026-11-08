@@ -10,7 +10,7 @@ struct RGB {
     float g = 0.f;
     float b = 0.f;
 
-    static constexpr RGB decode(uint32_t hex_color) {
+    static constexpr RGB from_hex(uint32_t hex_color) {
         return {
             .r = static_cast<float>((hex_color >> 16) & 0xFF) / 255.f,
             .g = static_cast<float>((hex_color >> 8) & 0xFF) / 255.f,
