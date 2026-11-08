@@ -29,9 +29,14 @@ void fill(const std::array<float, 3>&);
 } // namespace sdl_helper
 
 // Oh my fucking god, recent clang-format version strip the last empty line in
-// "extern" god knows for what reason.
+// "extern" god knows for what reason. TODO: remove this workaround when they
+// fix their shit.
 extern "C" {
+
 SDL_AppResult SDL_AppInit(void**, int, char*[]);
 SDL_AppResult SDL_AppEvent(void*, SDL_Event*);
 void SDL_AppQuit(void*, SDL_AppResult);
+// clang-format off
+
+// clang-format on
 }
