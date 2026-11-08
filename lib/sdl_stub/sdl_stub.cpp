@@ -38,8 +38,16 @@ SDL_AppResult SDL_AppInit(void**, int, char*[]) {
 }
 
 SDL_AppResult SDL_AppEvent(void*, SDL_Event* event) {
-    if (event->type == SDL_EVENT_QUIT) {
-        return SDL_APP_SUCCESS;
+    switch (event->type) {
+        case SDL_EVENT_QUIT:
+            return SDL_APP_SUCCESS;
+
+        case SDL_EVENT_KEY_DOWN:
+            switch (event->key.key) {
+                case SDLK_ESCAPE:
+                    return SDL_APP_SUCCESS;
+            }
+            break;
     }
     return SDL_APP_CONTINUE;
 }
