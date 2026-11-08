@@ -2,6 +2,7 @@
 // so, start with red, continue with orange, etc. This is a very dumb
 // implementation, obviously.
 
+#include <rgb.hpp>
 #include <sdl_stub.hpp>
 
 #define SDL_MAIN_USE_CALLBACKS 1
@@ -9,35 +10,6 @@
 
 #include <array>
 #include <cmath>
-
-namespace {
-
-struct RGB {
-    float r = 0.f;
-    float g = 0.f;
-    float b = 0.f;
-
-    static constexpr RGB decode(uint32_t hex_color) {
-        return {
-            static_cast<float>((hex_color >> 16) & 0xFF) / 255.f,
-            static_cast<float>((hex_color >> 8) & 0xFF) / 255.f,
-            static_cast<float>(hex_color & 0xFF) / 255.f,
-        };
-    }
-
-    constexpr RGB lerp(const RGB& other, float t) const {
-        // std::lerp on basic numbers is just a + t(b - a).
-        // This is called linear interpolation, and I really do wish I was
-        // smarter than I am.
-        return {
-            std::lerp(r, other.r, t),
-            std::lerp(g, other.g, t),
-            std::lerp(b, other.b, t),
-        };
-    }
-};
-
-} // namespace
 
 SDL_AppResult SDL_AppIterate(void*) {
     const auto counter = sdl_stub::now() - sdl_stub::app.start;

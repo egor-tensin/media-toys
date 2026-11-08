@@ -7,4 +7,5 @@ project(
     ],
 )
 
+subdir('lib')
 subdir('src')

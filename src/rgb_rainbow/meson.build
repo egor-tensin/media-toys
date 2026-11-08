@@ -4,6 +4,7 @@ executable(
         'main.cpp',
     ],
     dependencies: [
+        libcolor,
         libsdl_stub,
     ],
 )
