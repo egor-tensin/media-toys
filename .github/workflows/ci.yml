@@ -51,5 +51,4 @@ jobs:
               ninja-build
       - name: Build
         run: |
-          meson setup --buildtype=${{ matrix.configuration }} build
-          ninja -C build
+          make build/${{ matrix.configuration }}
