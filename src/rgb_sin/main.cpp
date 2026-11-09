@@ -20,10 +20,11 @@ SDL_AppResult SDL_AppIterate(void*) {
     static constexpr auto color_duration = phase_duration * 2;
     static constexpr auto cycle_duration = color_duration * rgb.size();
 
+    const auto color_position = std::fmod(counter, color_duration);
+
     const auto active_color =
         static_cast<size_t>(std::fmod(counter, cycle_duration) / color_duration);
 
-    const auto color_position = std::fmod(counter, color_duration);
     const auto t = color_position / color_duration;
 
     rgb[active_color] = std::sin(t * SDL_PI_F);
