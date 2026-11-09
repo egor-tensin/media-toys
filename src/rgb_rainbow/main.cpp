@@ -42,9 +42,11 @@ SDL_AppResult SDL_AppIterate(void*) {
     const auto& this_color = COLORS[this_color_idx];
     const auto& next_color = COLORS[next_color_idx];
 
+    const auto t = color_position / color_duration;
+
     // This is basically a + t(b - a) for every color component.
     // So, new_color = this_color + color_position / color_duration * (next_color - this_color).
-    const auto new_color = this_color.lerp(next_color, color_position / color_duration);
+    const auto new_color = this_color.lerp(next_color, t);
 
     sdl_helper::fill(new_color);
     return SDL_APP_CONTINUE;

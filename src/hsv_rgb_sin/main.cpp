@@ -25,10 +25,12 @@ SDL_AppResult SDL_AppIterate(void*) {
 
     const auto active_color = static_cast<size_t>(cycle_position / color_duration);
 
+    const auto t = color_position / color_duration;
+
     const RGB color = RGB::from_hsv({
         .h = active_color * 120.f,
         .s = 1.f,
-        .v = std::sin(color_position / color_duration * SDL_PI_F),
+        .v = std::sin(t * SDL_PI_F),
     });
 
     sdl_helper::fill(color);
