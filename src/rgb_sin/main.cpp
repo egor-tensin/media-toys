@@ -1,5 +1,5 @@
 // It's a variation on the "rgb" example, but the sine function is used to
-// calculate the color values instead of simpler arithmetics; see the "rgb"
+// calculate the color values instead of linear arithmetics; see the "rgb"
 // example for more info.
 
 #include <sdl_helper.hpp>

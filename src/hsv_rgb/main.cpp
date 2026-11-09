@@ -1,6 +1,6 @@
 // I don't understand the HSV color model, and I'm trying to, as best as I can.
 //
-// For more details about HSV, you can hopefully see the hsv_rainbow example.
+// For more details about HSV, you can hopefully see the "hsv_rainbow" example.
 //
 // This is analagous to the "rgb" example, but in the HSV color model.
 

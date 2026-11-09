@@ -1,6 +1,9 @@
 // In this example, I want to cycle through all the rainbow colors in order;
 // so, start with red, continue with orange, etc. This is a very dumb
 // implementation, obviously.
+//
+// The value of this particular implementation is to demonstrate how cycling
+// through RGB colors with linear interpolation can look bad.
 
 #include <rgb.hpp>
 #include <sdl_helper.hpp>
@@ -16,13 +19,13 @@ SDL_AppResult SDL_AppIterate(void*) {
 
     static constexpr std::array COLORS{
         // These particular values were picked from somewhere on the web.
-        RGB::from_hex(0xFF'00'00),
-        RGB::from_hex(0xFF'7F'00),
-        RGB::from_hex(0xFF'FF'00),
-        RGB::from_hex(0x00'FF'00),
-        RGB::from_hex(0x00'00'FF),
-        RGB::from_hex(0x4B'00'82),
-        RGB::from_hex(0x8F'00'FF),
+        RGB::from_hex(0xFF'00'00), // red
+        RGB::from_hex(0xFF'7F'00), // orange
+        RGB::from_hex(0xFF'FF'00), // yellow
+        RGB::from_hex(0x00'FF'00), // green
+        RGB::from_hex(0x00'00'FF), // blue
+        RGB::from_hex(0x4B'00'82), // indigo
+        RGB::from_hex(0x8F'00'FF), // violet
 
         // Black-to-white:
         // RGB::from_hex(0x00'00'00),
