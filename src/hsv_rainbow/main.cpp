@@ -23,11 +23,11 @@ SDL_AppResult SDL_AppIterate(void*) {
 
     const auto hue = t * 360.f;
 
-    const RGB color = RGB::from_hsv({
+    const HSV color{
         .h = hue,
         .s = 1.f,
         .v = 1.f,
-    });
+    };
 
     sdl_helper::fill(color);
     return SDL_APP_CONTINUE;

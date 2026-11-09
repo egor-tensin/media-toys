@@ -23,6 +23,10 @@ void fill(const RGB& rgb) {
     fill(rgb.r, rgb.g, rgb.b);
 }
 
+void fill(const HSV& hsv) {
+    fill(RGB::from_hsv(hsv));
+}
+
 } // namespace sdl_helper
 
 SDL_AppResult SDL_AppInit(void**, int, char*[]) {

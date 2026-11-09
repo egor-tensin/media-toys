@@ -27,11 +27,11 @@ SDL_AppResult SDL_AppIterate(void*) {
 
     const auto t = color_position / color_duration;
 
-    const RGB color = RGB::from_hsv({
+    const HSV color{
         .h = active_color * 120.f,
         .s = 1.f,
         .v = std::sin(t * SDL_PI_F),
-    });
+    };
 
     sdl_helper::fill(color);
     return SDL_APP_CONTINUE;

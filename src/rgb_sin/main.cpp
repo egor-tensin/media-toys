@@ -33,6 +33,6 @@ SDL_AppResult SDL_AppIterate(void*) {
 
     // SDL_Log("rgb: %f %f %f", rgb[0], rgb[1], rgb[2]);
 
-    sdl_helper::fill(rgb[0], rgb[1], rgb[2]);
+    sdl_helper::fill(rgb);
     return SDL_APP_CONTINUE;
 }
