@@ -4,9 +4,6 @@
 #include <rgb.hpp>
 #include <sdl_helper.hpp>
 
-#define SDL_MAIN_USE_CALLBACKS 1
-#include <SDL3/SDL_main.h>
-
 #include <array>
 #include <cmath>
 

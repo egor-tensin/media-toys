@@ -35,9 +35,7 @@ void fill(const HSV& hsv);
 // fix their shit.
 extern "C" {
 
-SDL_AppResult SDL_AppInit(void**, int, char*[]);
-SDL_AppResult SDL_AppEvent(void*, SDL_Event*);
-void SDL_AppQuit(void*, SDL_AppResult);
+SDL_AppResult SDL_AppIterate(void*);
 // clang-format off
 
 // clang-format on
