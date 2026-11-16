@@ -9,7 +9,7 @@ struct App {
     static constexpr size_t WINDOW_HEIGHT = 600;
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;
-    float start = 0.f;
+    float start = 0.;
 };
 
 extern App app;

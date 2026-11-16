@@ -30,7 +30,7 @@ SDL_AppResult SDL_AppIterate(void*) {
     };
 
     // The cycle duration for the full rainbow.
-    static constexpr auto cycle_duration = 10.f;
+    static constexpr auto cycle_duration = 10.;
     static constexpr auto color_duration = cycle_duration / COLORS.size();
 
     const auto cycle_position = std::fmod(counter, cycle_duration);

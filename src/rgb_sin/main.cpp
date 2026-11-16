@@ -13,7 +13,7 @@ SDL_AppResult SDL_AppIterate(void*) {
     std::array<float, 3> rgb{};
 
     // I want for each color to take 2 seconds to go from 0 to 1.
-    static constexpr auto phase_duration = 2.f;
+    static constexpr auto phase_duration = 2.;
     static constexpr auto color_duration = phase_duration * 2;
     static constexpr auto cycle_duration = color_duration * rgb.size();
 

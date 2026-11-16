@@ -7,5 +7,7 @@ project(
     ],
 )
 
+add_project_arguments('-fsingle-precision-constant', language: 'cpp')
+
 subdir('lib')
 subdir('src')

@@ -13,17 +13,17 @@ SDL_AppResult SDL_AppIterate(void*) {
     const auto counter = sdl_helper::now() - sdl_helper::app.start;
 
     // The cycle duration for the full rainbow.
-    static constexpr auto cycle_duration = 10.f;
+    static constexpr auto cycle_duration = 10.;
     const auto cycle_position = std::fmod(counter, cycle_duration);
 
     const auto t = cycle_position / cycle_duration;
 
-    const auto hue = t * 360.f;
+    const auto hue = t * 360.;
 
     const HSV color{
         .h = hue,
-        .s = 1.f,
-        .v = 1.f,
+        .s = 1.,
+        .v = 1.,
     };
 
     sdl_helper::fill(color);

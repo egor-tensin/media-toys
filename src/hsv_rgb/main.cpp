@@ -17,7 +17,7 @@ SDL_AppResult SDL_AppIterate(void*) {
     static constexpr std::array<float, 3> rgb{};
 
     // I want for each color to take 2 seconds to go from 0 to 1.
-    static constexpr auto phase_duration = 2.f;
+    static constexpr auto phase_duration = 2.;
     static constexpr auto color_duration = phase_duration * 2;
     static constexpr auto cycle_duration = color_duration * rgb.size();
 
@@ -29,9 +29,9 @@ SDL_AppResult SDL_AppIterate(void*) {
     const auto t = color_position / color_duration;
 
     const HSV color{
-        .h = active_color * 120.f,
-        .s = 1.f,
-        .v = 1.f - std::abs(2.f * t - 1),
+        .h = active_color * 120.,
+        .s = 1.,
+        .v = 1. - std::abs(2. * t - 1),
     };
 
     sdl_helper::fill(color);
