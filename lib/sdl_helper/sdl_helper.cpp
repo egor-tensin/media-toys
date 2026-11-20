@@ -55,7 +55,7 @@ SDL_AppResult SDL_AppInit(void**, int, char*[]) {
         SDL_LOGICAL_PRESENTATION_LETTERBOX
     );
 
-    sdl_helper::app.start = sdl_helper::now();
+    sdl_helper::app.start = sdl_helper::app.now();
 
     return SDL_APP_CONTINUE;
 }

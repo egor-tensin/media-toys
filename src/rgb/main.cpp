@@ -8,7 +8,7 @@
 #include <cmath>
 
 SDL_AppResult SDL_AppIterate(void*) {
-    const auto counter = sdl_helper::now() - sdl_helper::app.start;
+    const auto counter = sdl_helper::app.counter();
     // This is the main, ever-increasing counter - the floating-point value of
     // seconds passed since the program started.
 

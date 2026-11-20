@@ -12,7 +12,7 @@
 #include <cmath>
 
 SDL_AppResult SDL_AppIterate(void*) {
-    const auto counter = sdl_helper::now() - sdl_helper::app.start;
+    const auto counter = sdl_helper::app.counter();
 
     static constexpr std::array COLORS{
         // These particular values were picked from somewhere on the web.
