@@ -1,6 +1,7 @@
 subdir('hsv_rainbow')
 subdir('hsv_rgb')
 subdir('hsv_rgb_sin')
+subdir('colored_squares')
 subdir('rgb')
 subdir('rgb_rainbow')
 subdir('rgb_sin')
