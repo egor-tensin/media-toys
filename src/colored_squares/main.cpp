@@ -1,13 +1,18 @@
 #include <hsv.hpp>
 #include <rgb.hpp>
-#include <sdl_helper.hpp>
+#include <sdl_dumb_app.hpp>
 
 #include <cmath>
 #include <limits>
 
-namespace {
+class ThisApp : public DumbApp {
+public:
+    SDL_AppResult iterate(float) override;
 
-RGB random_color() {
+    static RGB random_color();
+};
+
+RGB ThisApp::random_color() {
     const HSV hsv{
         .h = SDL_randf() * 360.,
         .s = std::sin(SDL_randf() * SDL_PI_F / 2 + SDL_PI_F / 4),
@@ -17,10 +22,7 @@ RGB random_color() {
     return RGB::from_hsv(hsv);
 }
 
-}
-
-SDL_AppResult SDL_AppIterate(void*) {
-    const auto counter = sdl_helper::app.counter();
+SDL_AppResult ThisApp::iterate(float counter) {
     static constexpr auto cycle_duration = .25;
     static size_t cycle_counter = std::numeric_limits<size_t>::max();
     const auto current_cycle = static_cast<size_t>(counter / cycle_duration);
@@ -30,8 +32,8 @@ SDL_AppResult SDL_AppIterate(void*) {
 
     cycle_counter = current_cycle;
 
-    static constexpr auto window_height = static_cast<float>(sdl_helper::app.WINDOW_HEIGHT);
-    static constexpr auto window_width = static_cast<float>(sdl_helper::app.WINDOW_WIDTH);
+    static constexpr auto window_height = static_cast<float>(WINDOW_HEIGHT);
+    static constexpr auto window_width = static_cast<float>(WINDOW_WIDTH);
 
     static constexpr size_t grid_height = 25;
     static constexpr size_t grid_width = 25;
@@ -39,7 +41,7 @@ SDL_AppResult SDL_AppIterate(void*) {
     static constexpr auto rect_height = window_height / grid_height;
     static constexpr auto rect_width = window_width / grid_width;
 
-    SDL_RenderClear(sdl_helper::app.renderer);
+    SDL_RenderClear(renderer);
 
     for (size_t i = 0; i < grid_width; ++i) {
         for (size_t j = 0; j < grid_height; ++j) {
@@ -58,11 +60,16 @@ SDL_AppResult SDL_AppIterate(void*) {
 
             const auto rgb = random_color();
 
-            SDL_SetRenderDrawColorFloat(sdl_helper::app.renderer, rgb.r, rgb.g, rgb.b, SDL_ALPHA_OPAQUE_FLOAT);
-            SDL_RenderFillRect(sdl_helper::app.renderer, &rect);
+            SDL_SetRenderDrawColorFloat(renderer, rgb.r, rgb.g, rgb.b, SDL_ALPHA_OPAQUE_FLOAT);
+            SDL_RenderFillRect(renderer, &rect);
         }
     }
 
-    SDL_RenderPresent(sdl_helper::app.renderer);
+    SDL_RenderPresent(renderer);
     return SDL_APP_CONTINUE;
+}
+
+App* App::get() {
+    static ThisApp instance;
+    return &instance;
 }

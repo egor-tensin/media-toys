@@ -6,14 +6,17 @@
 // through RGB colors with linear interpolation can look bad.
 
 #include <rgb.hpp>
-#include <sdl_helper.hpp>
+#include <sdl_dumb_app.hpp>
 
 #include <array>
 #include <cmath>
 
-SDL_AppResult SDL_AppIterate(void*) {
-    const auto counter = sdl_helper::app.counter();
+class ThisApp : public DumbApp {
+public:
+    SDL_AppResult iterate(float) override;
+};
 
+SDL_AppResult ThisApp::iterate(float counter) {
     static constexpr std::array COLORS{
         // These particular values were picked from somewhere on the web.
         RGB::from_hex(0xFF'00'00), // red
@@ -48,6 +51,11 @@ SDL_AppResult SDL_AppIterate(void*) {
     // So, new_color = this_color + color_position / color_duration * (next_color - this_color).
     const auto new_color = this_color.lerp(next_color, t);
 
-    sdl_helper::fill(new_color);
+    fill(new_color);
     return SDL_APP_CONTINUE;
+};
+
+App* App::get() {
+    static ThisApp instance;
+    return &instance;
 }

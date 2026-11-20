@@ -5,13 +5,16 @@
 
 #include <hsv.hpp>
 #include <rgb.hpp>
-#include <sdl_helper.hpp>
+#include <sdl_dumb_app.hpp>
 
 #include <cmath>
 
-SDL_AppResult SDL_AppIterate(void*) {
-    const auto counter = sdl_helper::app.counter();
+class ThisApp : public DumbApp {
+public:
+    SDL_AppResult iterate(float) override;
+};
 
+SDL_AppResult ThisApp::iterate(float counter) {
     // The cycle duration for the full rainbow.
     static constexpr auto cycle_duration = 10.;
     const auto cycle_position = std::fmod(counter, cycle_duration);
@@ -26,6 +29,11 @@ SDL_AppResult SDL_AppIterate(void*) {
         .v = 1.,
     };
 
-    sdl_helper::fill(color);
+    fill(color);
     return SDL_APP_CONTINUE;
+}
+
+App* App::get() {
+    static ThisApp instance;
+    return &instance;
 }

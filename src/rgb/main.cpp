@@ -2,15 +2,19 @@
 // at 0, incrementally gets to 1, goes back to 0 again; after that, green does
 // the same (red & blue staying at 0 meanwhile), and blue after that.
 
-#include <sdl_helper.hpp>
+#include <sdl_dumb_app.hpp>
 
 #include <array>
 #include <cmath>
 
-SDL_AppResult SDL_AppIterate(void*) {
-    const auto counter = sdl_helper::app.counter();
-    // This is the main, ever-increasing counter - the floating-point value of
-    // seconds passed since the program started.
+class ThisApp : public DumbApp {
+public:
+    SDL_AppResult iterate(float) override;
+};
+
+SDL_AppResult ThisApp::iterate(float counter) {
+    // The counter is the floating-point value of seconds passed since the
+    // program started.
 
     // All colors are 0 for now.
     std::array<float, 3> rgb{};
@@ -61,6 +65,11 @@ SDL_AppResult SDL_AppIterate(void*) {
 
     // SDL_Log("rgb: %f %f %f", rgb[0], rgb[1], rgb[2]);
 
-    sdl_helper::fill(rgb);
+    fill(rgb);
     return SDL_APP_CONTINUE;
+}
+
+App* App::get() {
+    static ThisApp instance;
+    return &instance;
 }

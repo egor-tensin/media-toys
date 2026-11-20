@@ -3,7 +3,8 @@ actual_sdl = dependency('sdl3')
 impl = static_library(
     import('fs').name(meson.current_source_dir()),
     sources: [
-        'sdl_helper.cpp',
+        'sdl_app.cpp',
+        'sdl_dumb_app.cpp',
     ],
     dependencies: [
         actual_sdl,

@@ -2,14 +2,17 @@
 // calculate the color values instead of linear arithmetics; see the "rgb"
 // example for more info.
 
-#include <sdl_helper.hpp>
+#include <sdl_dumb_app.hpp>
 
 #include <array>
 #include <cmath>
 
-SDL_AppResult SDL_AppIterate(void*) {
-    const auto counter = sdl_helper::app.counter();
+class ThisApp : public DumbApp {
+public:
+    SDL_AppResult iterate(float) override;
+};
 
+SDL_AppResult ThisApp::iterate(float counter) {
     std::array<float, 3> rgb{};
 
     // I want for each color to take 2 seconds to go from 0 to 1.
@@ -28,8 +31,11 @@ SDL_AppResult SDL_AppIterate(void*) {
     // The sine function is used here because it conveniently produces values
     // in the range of [0, 1] for [0, Pi] in a smooth curve.
 
-    // SDL_Log("rgb: %f %f %f", rgb[0], rgb[1], rgb[2]);
-
-    sdl_helper::fill(rgb);
+    fill(rgb);
     return SDL_APP_CONTINUE;
+}
+
+App* App::get() {
+    static ThisApp instance;
+    return &instance;
 }
