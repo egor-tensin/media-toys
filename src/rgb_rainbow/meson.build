@@ -4,7 +4,7 @@ executable(
         'main.cpp',
     ],
     dependencies: [
+        libapp,
         libcolor,
-        libsdl_helper,
     ],
 )

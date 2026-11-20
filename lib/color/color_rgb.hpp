@@ -1,6 +1,6 @@
 #pragma once
 
-#include "hsv.hpp"
+#include "color_hsv.hpp"
 
 #include <cmath>
 #include <cstdint>

@@ -3,9 +3,8 @@
 // As far as I understand, RBG is how displays work, and HSV is a convenient
 // way to represent colors as humans expect them to be.
 
-#include <hsv.hpp>
-#include <rgb.hpp>
-#include <sdl_dumb_app.hpp>
+#include <app.hpp>
+#include <color.hpp>
 
 #include <cmath>
 

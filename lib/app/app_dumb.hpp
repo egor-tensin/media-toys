@@ -1,9 +1,8 @@
 #pragma once
 
-#include "sdl_app.hpp"
+#include "app_base.hpp"
 
-#include <hsv.hpp>
-#include <rgb.hpp>
+#include <color.hpp>
 
 #include <SDL3/SDL.h>
 

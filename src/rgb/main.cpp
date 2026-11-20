@@ -2,7 +2,7 @@
 // at 0, incrementally gets to 1, goes back to 0 again; after that, green does
 // the same (red & blue staying at 0 meanwhile), and blue after that.
 
-#include <sdl_dumb_app.hpp>
+#include <app.hpp>
 
 #include <array>
 #include <cmath>

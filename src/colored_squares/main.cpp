@@ -1,6 +1,5 @@
-#include <hsv.hpp>
-#include <rgb.hpp>
-#include <sdl_dumb_app.hpp>
+#include <app.hpp>
+#include <color.hpp>
 
 #include <cmath>
 #include <limits>

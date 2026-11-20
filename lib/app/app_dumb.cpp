@@ -1,7 +1,6 @@
-#include "sdl_dumb_app.hpp"
+#include "app_dumb.hpp"
 
-#include <hsv.hpp>
-#include <rgb.hpp>
+#include <color.hpp>
 
 #include <SDL3/SDL.h>
 
@@ -23,7 +22,9 @@ SDL_AppResult DumbApp::init(int argc, char** argv) {
     return SDL_APP_CONTINUE;
 }
 
-SDL_AppResult DumbApp::iterate(float) {}
+SDL_AppResult DumbApp::iterate(float) {
+    return SDL_APP_CONTINUE;
+}
 
 SDL_AppResult DumbApp::handle_event(SDL_Event* event) {
     switch (event->type) {

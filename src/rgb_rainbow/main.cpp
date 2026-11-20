@@ -5,8 +5,8 @@
 // The value of this particular implementation is to demonstrate how cycling
 // through RGB colors with linear interpolation can look bad.
 
-#include <rgb.hpp>
-#include <sdl_dumb_app.hpp>
+#include <app.hpp>
+#include <color.hpp>
 
 #include <array>
 #include <cmath>

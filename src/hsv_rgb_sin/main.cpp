@@ -1,8 +1,7 @@
 // Analogous to the "rgb_sin" example, but in the HSV color model.
 
-#include <hsv.hpp>
-#include <rgb.hpp>
-#include <sdl_dumb_app.hpp>
+#include <app.hpp>
+#include <color.hpp>
 
 #include <array>
 #include <cmath>

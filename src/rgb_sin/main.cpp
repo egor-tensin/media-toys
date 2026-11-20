@@ -2,7 +2,7 @@
 // calculate the color values instead of linear arithmetics; see the "rgb"
 // example for more info.
 
-#include <sdl_dumb_app.hpp>
+#include <app.hpp>
 
 #include <array>
 #include <cmath>

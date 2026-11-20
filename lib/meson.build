@@ -1,2 +1,2 @@
 subdir('color')
-subdir('sdl_helper')
+subdir('app')

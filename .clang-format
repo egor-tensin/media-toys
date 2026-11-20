@@ -22,7 +22,7 @@ WrapNamespaceBodyWithEmptyLines: Always
 IncludeCategories:
   - Regex: '^".+'
     Priority: 1
-  - Regex: '^<(rgb\.hpp|hsv\.hpp|sdl_.+\.hpp)>$'
+  - Regex: '^<(app\.hpp|color\.hpp)>$'
     Priority: 2
   - Regex: '^<SDL3\/'
     Priority: 3
