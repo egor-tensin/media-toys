@@ -8,7 +8,17 @@ class ThisApp : public DumbApp {
 public:
     SDL_AppResult iterate(float) override;
 
+private:
+    // Randomize everything every .25 seconds!
+    static constexpr auto CYCLE_DURATION = .25;
+
+    // Number of squares in each dimension:
+    static constexpr size_t GRID_HEIGHT = 25;
+    static constexpr size_t GRID_WIDTH = 25;
+
     static RGB random_color();
+
+    size_t cycle_counter = std::numeric_limits<size_t>::max();
 };
 
 RGB ThisApp::random_color() {
@@ -17,33 +27,22 @@ RGB ThisApp::random_color() {
         .s = std::sin(SDL_randf() * SDL_PI_F / 2 + SDL_PI_F / 4),
         .v = std::sin(SDL_randf() * SDL_PI_F / 2 + SDL_PI_F / 4),
     };
-
     return RGB::from_hsv(hsv);
 }
 
 SDL_AppResult ThisApp::iterate(float counter) {
-    static constexpr auto cycle_duration = .25;
-    static size_t cycle_counter = std::numeric_limits<size_t>::max();
-    const auto current_cycle = static_cast<size_t>(counter / cycle_duration);
-
+    const auto current_cycle = static_cast<size_t>(counter / CYCLE_DURATION);
     if (current_cycle == cycle_counter)
         return SDL_APP_CONTINUE;
-
     cycle_counter = current_cycle;
-
-    static constexpr auto window_height = static_cast<float>(WINDOW_HEIGHT);
-    static constexpr auto window_width = static_cast<float>(WINDOW_WIDTH);
-
-    static constexpr size_t grid_height = 25;
-    static constexpr size_t grid_width = 25;
-
-    static constexpr auto rect_height = window_height / grid_height;
-    static constexpr auto rect_width = window_width / grid_width;
 
     SDL_RenderClear(renderer);
 
-    for (size_t i = 0; i < grid_width; ++i) {
-        for (size_t j = 0; j < grid_height; ++j) {
+    static constexpr auto rect_height = static_cast<float>(WINDOW_HEIGHT) / GRID_HEIGHT;
+    static constexpr auto rect_width = static_cast<float>(WINDOW_WIDTH) / GRID_WIDTH;
+
+    for (size_t i = 0; i < GRID_WIDTH; ++i) {
+        for (size_t j = 0; j < GRID_HEIGHT; ++j) {
             const auto x1 = i * rect_width;
             const auto x2 = (i + 1) * rect_width;
 

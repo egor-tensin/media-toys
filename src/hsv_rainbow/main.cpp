@@ -11,19 +11,18 @@
 class ThisApp : public DumbApp {
 public:
     SDL_AppResult iterate(float) override;
+
+private:
+    // The cycle duration for the full rainbow.
+    static constexpr auto CYCLE_DURATION = 10.;
 };
 
 SDL_AppResult ThisApp::iterate(float counter) {
-    // The cycle duration for the full rainbow.
-    static constexpr auto cycle_duration = 10.;
-    const auto cycle_position = std::fmod(counter, cycle_duration);
-
-    const auto t = cycle_position / cycle_duration;
-
-    const auto hue = t * 360.;
+    const auto cycle_position = std::fmod(counter, CYCLE_DURATION);
+    const auto t = cycle_position / CYCLE_DURATION;
 
     const HSV color{
-        .h = hue,
+        .h = t * 360,
         .s = 1.,
         .v = 1.,
     };

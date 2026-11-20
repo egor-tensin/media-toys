@@ -14,9 +14,8 @@
 class ThisApp : public DumbApp {
 public:
     SDL_AppResult iterate(float) override;
-};
 
-SDL_AppResult ThisApp::iterate(float counter) {
+private:
     static constexpr std::array COLORS{
         // These particular values were picked from somewhere on the web.
         RGB::from_hex(0xFF'00'00), // red
@@ -33,22 +32,24 @@ SDL_AppResult ThisApp::iterate(float counter) {
     };
 
     // The cycle duration for the full rainbow.
-    static constexpr auto cycle_duration = 10.;
-    static constexpr auto color_duration = cycle_duration / COLORS.size();
+    static constexpr auto CYCLE_DURATION = 10.;
+    static constexpr auto COLOR_DURATION = CYCLE_DURATION / COLORS.size();
+};
 
-    const auto cycle_position = std::fmod(counter, cycle_duration);
-    const auto color_position = std::fmod(cycle_position, color_duration);
+SDL_AppResult ThisApp::iterate(float counter) {
+    const auto cycle_position = std::fmod(counter, CYCLE_DURATION);
+    const auto color_position = std::fmod(cycle_position, COLOR_DURATION);
 
-    const auto this_color_idx = static_cast<size_t>(cycle_position / color_duration);
+    const auto this_color_idx = static_cast<size_t>(cycle_position / COLOR_DURATION);
     const auto next_color_idx = (this_color_idx + 1) % COLORS.size();
 
     const auto& this_color = COLORS[this_color_idx];
     const auto& next_color = COLORS[next_color_idx];
 
-    const auto t = color_position / color_duration;
+    const auto t = color_position / COLOR_DURATION;
 
     // This is basically a + t(b - a) for every color component.
-    // So, new_color = this_color + color_position / color_duration * (next_color - this_color).
+    // So, new_color = this_color + color_position / COLOR_DURATION * (next_color - this_color).
     const auto new_color = this_color.lerp(next_color, t);
 
     fill(new_color);
