@@ -60,15 +60,15 @@ SDL_AppResult ThisApp::iterate(float counter) {
 
     for (size_t i = 0; i < grid_height; ++i) {
         for (size_t j = 0; j < grid_width; ++j) {
-            const auto x1 = j * rect_width + margin;
-            const auto x2 = (j + 1) * rect_width + margin;
+            const auto x1 = j * rect_width;
+            const auto x2 = (j + 1) * rect_width;
 
-            const auto y1 = i * rect_height + margin;
-            const auto y2 = (i + 1) * rect_height + margin;
+            const auto y1 = i * rect_height;
+            const auto y2 = (i + 1) * rect_height;
 
             SDL_FRect rect{
-                .x = x1,
-                .y = y1,
+                .x = x1 + margin,
+                .y = y1 + margin,
                 .w = x2 - x1 - margin,
                 .h = y2 - y1 - margin,
             };
