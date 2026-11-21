@@ -50,6 +50,7 @@ SDL_AppResult DumbApp::handle_event(SDL_Event* event) {
         case SDL_EVENT_KEY_DOWN:
             switch (event->key.key) {
                 case SDLK_ESCAPE:
+                case SDLK_Q:
                     return SDL_APP_SUCCESS;
             }
             break;
