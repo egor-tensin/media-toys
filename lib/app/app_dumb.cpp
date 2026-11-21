@@ -30,6 +30,7 @@ SDL_AppResult DumbApp::init(int argc, char** argv) {
         SDL_Log("Couldn't create window/renderer: %s", SDL_GetError());
         return SDL_APP_FAILURE;
     }
+
     SDL_SetRenderLogicalPresentation(
         renderer, window_width, window_height, SDL_LOGICAL_PRESENTATION_LETTERBOX
     );

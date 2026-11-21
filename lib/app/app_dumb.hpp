@@ -28,11 +28,9 @@ public:
 protected:
     static constexpr size_t MIN_WINDOW_SIZE = 10;
     static constexpr size_t MAX_WINDOW_SIZE = 10000;
-    static constexpr size_t DEFAULT_WINDOW_WIDTH = 800;
-    static constexpr size_t DEFAULT_WINDOW_HEIGHT = 600;
 
-    size_t window_width = DEFAULT_WINDOW_WIDTH;
-    size_t window_height = DEFAULT_WINDOW_HEIGHT;
+    size_t window_width = 800;
+    size_t window_height = 600;
 
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;
