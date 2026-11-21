@@ -4,7 +4,14 @@
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 
-SDL_AppResult App::init(int, char**) {
+SDL_AppResult App::init(int argc, char** argv) {
+    try {
+        cmd_parser.parse(argc, argv);
+    } catch (const CLI::ParseError& e) {
+        cmd_parser.exit(e);
+        return SDL_APP_FAILURE;
+    }
+
     if (!SDL_Init(SDL_INIT_VIDEO)) {
         SDL_Log("Couldn't initialize SDL: %s", SDL_GetError());
         return SDL_APP_FAILURE;

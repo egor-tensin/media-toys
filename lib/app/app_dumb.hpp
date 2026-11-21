@@ -13,6 +13,8 @@ public:
     /* A dumb "app" that does nothing except show a black screen that can be
      * closed w/ Esc. Also, provides a simple fill() method. */
 
+    DumbApp();
+
     SDL_AppResult init(int, char**) override;
     SDL_AppResult iterate(float) override;
     SDL_AppResult handle_event(SDL_Event*) override;
@@ -24,8 +26,13 @@ public:
     void fill(const HSV&) const;
 
 protected:
-    static constexpr size_t WINDOW_WIDTH = 800;
-    static constexpr size_t WINDOW_HEIGHT = 600;
+    static constexpr size_t MIN_WINDOW_SIZE = 10;
+    static constexpr size_t MAX_WINDOW_SIZE = 10000;
+    static constexpr size_t DEFAULT_WINDOW_WIDTH = 800;
+    static constexpr size_t DEFAULT_WINDOW_HEIGHT = 600;
+
+    size_t window_width = DEFAULT_WINDOW_WIDTH;
+    size_t window_height = DEFAULT_WINDOW_HEIGHT;
 
     SDL_Window* window = nullptr;
     SDL_Renderer* renderer = nullptr;

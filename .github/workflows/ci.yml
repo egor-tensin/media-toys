@@ -46,6 +46,7 @@ jobs:
         run: |
           sudo apt update
           sudo DEBIAN_FRONTEND=noninteractive apt install -yq --no-install-recommends \
+              libcli11-dev \
               libsdl3-dev \
               meson \
               ninja-build

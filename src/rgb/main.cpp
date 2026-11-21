@@ -9,8 +9,19 @@
 
 class ThisApp : public DumbApp {
 public:
+    ThisApp();
+
     SDL_AppResult iterate(float) override;
+
+private:
+    // The complete cycle duration for all colors.
+    float cycle_duration = 6.;
 };
+
+ThisApp::ThisApp() {
+    cmd_parser.add_option("-d,--duration", cycle_duration, "Set cycle duration (seconds)")
+        ->check(CLI::PositiveNumber);
+}
 
 SDL_AppResult ThisApp::iterate(float counter) {
     // The counter is the floating-point value of seconds passed since the
@@ -19,12 +30,8 @@ SDL_AppResult ThisApp::iterate(float counter) {
     // All colors are 0 for now.
     std::array<float, 3> rgb{};
 
-    // I want for each color to take 2 seconds to go from 0 to 1.
-    static constexpr auto phase_duration = 2.;
     // The complete color cycle duration (going up and down).
-    static constexpr auto color_duration = phase_duration * 2;
-    // The complete cycle duration for all colors.
-    static constexpr auto cycle_duration = color_duration * rgb.size();
+    const auto color_duration = cycle_duration / 3;
 
     // What's the ID of the active color?
     const auto active_color =

@@ -7,23 +7,35 @@
 
 class ThisApp : public DumbApp {
 public:
+    ThisApp();
+
     SDL_AppResult iterate(float) override;
 
 private:
-    // Margin around the squares (in pixels):
-    static constexpr auto MARGIN = 1.;
-
-    // Randomize everything every .25 seconds!
-    static constexpr auto CYCLE_DURATION = .25;
-
-    // Number of squares in each dimension:
-    static constexpr size_t GRID_HEIGHT = 25;
-    static constexpr size_t GRID_WIDTH = 25;
-
     static RGB random_color();
 
+    float cycle_duration = 1.;
     std::optional<size_t> cycle_counter;
+
+    size_t grid_height = 10;
+    size_t grid_width = 10;
+
+    float rect_height;
+    float rect_width;
+
+    float margin = 0.;
 };
+
+ThisApp::ThisApp() {
+    cmd_parser.add_option("-d,--duration", cycle_duration, "Set cycle duration (seconds)")
+        ->check(CLI::PositiveNumber);
+    cmd_parser.add_option("-g,--grid-width", grid_width, "Set grid width")
+        ->check(CLI::PositiveNumber);
+    cmd_parser.add_option("-G,--grid-height", grid_height, "Set grid height")
+        ->check(CLI::PositiveNumber);
+    cmd_parser.add_option("-m,--margin", margin, "Set margin for squares (px)")
+        ->check(CLI::NonNegativeNumber);
+}
 
 RGB ThisApp::random_color() {
     const HSV hsv{
@@ -35,30 +47,30 @@ RGB ThisApp::random_color() {
 }
 
 SDL_AppResult ThisApp::iterate(float counter) {
-    const auto current_cycle = static_cast<size_t>(counter / CYCLE_DURATION);
+    const auto current_cycle = static_cast<size_t>(counter / cycle_duration);
     if (cycle_counter && current_cycle == cycle_counter)
         return SDL_APP_CONTINUE;
     cycle_counter = current_cycle;
 
+    const auto rect_height = (static_cast<float>(window_height) - margin) / grid_height;
+    const auto rect_width = (static_cast<float>(window_width) - margin) / grid_width;
+
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE_FLOAT);
     SDL_RenderClear(renderer);
 
-    static constexpr auto rect_height = (static_cast<float>(WINDOW_HEIGHT) - MARGIN) / GRID_HEIGHT;
-    static constexpr auto rect_width = (static_cast<float>(WINDOW_WIDTH) - MARGIN) / GRID_WIDTH;
+    for (size_t i = 0; i < grid_height; ++i) {
+        for (size_t j = 0; j < grid_width; ++j) {
+            const auto x1 = j * rect_width + margin;
+            const auto x2 = (j + 1) * rect_width + margin;
 
-    for (size_t i = 0; i < GRID_HEIGHT; ++i) {
-        for (size_t j = 0; j < GRID_WIDTH; ++j) {
-            const auto x1 = j * rect_width + MARGIN;
-            const auto x2 = (j + 1) * rect_width + MARGIN;
-
-            const auto y1 = i * rect_height + MARGIN;
-            const auto y2 = (i + 1) * rect_height + MARGIN;
+            const auto y1 = i * rect_height + margin;
+            const auto y2 = (i + 1) * rect_height + margin;
 
             SDL_FRect rect{
                 .x = x1,
                 .y = y1,
-                .w = x2 - x1 - MARGIN,
-                .h = y2 - y1 - MARGIN,
+                .w = x2 - x1 - margin,
+                .h = y2 - y1 - margin,
             };
 
             const auto rgb = random_color();

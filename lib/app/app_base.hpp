@@ -2,21 +2,25 @@
 
 #include <SDL3/SDL.h>
 
+#include <CLI/CLI.hpp>
+
 class App {
 public:
+    virtual ~App() = default;
+
     static App* get();
 
     virtual SDL_AppResult init(int, char**);
-
     virtual SDL_AppResult iterate(float counter) = 0;
-
     virtual SDL_AppResult handle_event(SDL_Event*) = 0;
-
     virtual void quit(SDL_AppResult) {}
 
     float get_counter() const {
         return now() - start;
     }
+
+protected:
+    CLI::App cmd_parser;
 
 private:
     static float now() {

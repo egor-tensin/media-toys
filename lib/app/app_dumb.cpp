@@ -6,8 +6,17 @@
 
 #include <array>
 
+DumbApp::DumbApp() {
+    cmd_parser.add_option("-W,--width", window_width, "Set window width (px)")
+        ->check(CLI::Range(MIN_WINDOW_SIZE, MAX_WINDOW_SIZE));
+    cmd_parser.add_option("-H,--height", window_height, "Set window height (px)")
+        ->check(CLI::Range(MIN_WINDOW_SIZE, MAX_WINDOW_SIZE));
+}
+
 SDL_AppResult DumbApp::init(int argc, char** argv) {
-    App::init(argc, argv);
+    const auto base_result = App::init(argc, argv);
+    if (base_result != SDL_APP_CONTINUE)
+        return base_result;
 
     SDL_Log("Available renderer drivers:");
     for (int i = 0; i < SDL_GetNumRenderDrivers(); ++i) {
@@ -15,13 +24,13 @@ SDL_AppResult DumbApp::init(int argc, char** argv) {
     }
 
     if (!SDL_CreateWindowAndRenderer(
-            "dumb_app", WINDOW_WIDTH, WINDOW_HEIGHT, 0, &window, &renderer
+            "dumb_app", window_width, window_height, 0, &window, &renderer
         )) {
         SDL_Log("Couldn't create window/renderer: %s", SDL_GetError());
         return SDL_APP_FAILURE;
     }
     SDL_SetRenderLogicalPresentation(
-        renderer, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_LOGICAL_PRESENTATION_LETTERBOX
+        renderer, window_width, window_height, SDL_LOGICAL_PRESENTATION_LETTERBOX
     );
 
     return SDL_APP_CONTINUE;

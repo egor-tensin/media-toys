@@ -1,4 +1,5 @@
 sdl = dependency('sdl3')
+cli11 = dependency('CLI11')
 
 impl = static_library(
     import('fs').name(meson.current_source_dir()),
@@ -7,6 +8,7 @@ impl = static_library(
         'app_dumb.cpp',
     ],
     dependencies: [
+        cli11,
         libcolor,
         sdl,
     ],
@@ -16,6 +18,7 @@ libapp = declare_dependency(
     link_with: impl,
     include_directories: include_directories('.'),
     dependencies: [
+        cli11,
         libcolor,
     ],
 )

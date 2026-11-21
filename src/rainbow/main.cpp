@@ -10,16 +10,22 @@
 
 class ThisApp : public DumbApp {
 public:
+    ThisApp();
+
     SDL_AppResult iterate(float) override;
 
 private:
-    // The cycle duration for the full rainbow.
-    static constexpr auto CYCLE_DURATION = 10.;
+    float cycle_duration = 10.;
 };
 
+ThisApp::ThisApp() {
+    cmd_parser.add_option("-d,--duration", cycle_duration, "Set cycle duration (seconds)")
+        ->check(CLI::PositiveNumber);
+}
+
 SDL_AppResult ThisApp::iterate(float counter) {
-    const auto cycle_position = std::fmod(counter, CYCLE_DURATION);
-    const auto t = cycle_position / CYCLE_DURATION;
+    const auto cycle_position = std::fmod(counter, cycle_duration);
+    const auto t = cycle_position / cycle_duration;
 
     const HSV color{
         .h = t * 360,
