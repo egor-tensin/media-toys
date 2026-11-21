@@ -9,6 +9,11 @@
 SDL_AppResult DumbApp::init(int argc, char** argv) {
     App::init(argc, argv);
 
+    SDL_Log("Available renderer drivers:");
+    for (int i = 0; i < SDL_GetNumRenderDrivers(); ++i) {
+        SDL_Log("%d. %s", i + 1, SDL_GetRenderDriver(i));
+    }
+
     if (!SDL_CreateWindowAndRenderer(
             "dumb_app", WINDOW_WIDTH, WINDOW_HEIGHT, 0, &window, &renderer
         )) {
