@@ -1,4 +1,4 @@
-// Analogous to the "rgb_sin" example, but in the HSV color model.
+// Analogous to the "rgb/sine" example, but using the HSV color model.
 
 #include <app.hpp>
 #include <color.hpp>

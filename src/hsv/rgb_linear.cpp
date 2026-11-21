@@ -2,7 +2,7 @@
 //
 // For more details about HSV, you can hopefully see the "rainbow" example.
 //
-// This is analagous to the "rgb" example, but in the HSV color model.
+// This is analagous to the "rgb/linear" example, but in the HSV color model.
 
 #include <app.hpp>
 #include <color.hpp>

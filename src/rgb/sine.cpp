@@ -1,5 +1,5 @@
-// It's a variation on the "rgb" example, but the sine function is used to
-// calculate the color values instead of linear arithmetics; see the "rgb"
+// It's a variation on the "linear" example, but the sine function is used to
+// calculate the color values instead of linear arithmetics; see the "linear"
 // example for more info.
 
 #include <app.hpp>

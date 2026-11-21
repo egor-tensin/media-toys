@@ -1,9 +1,18 @@
-executable(
-    import('fs').name(meson.current_source_dir()),
-    sources: [
-        'main.cpp',
-    ],
-    dependencies: [
-        libapp,
-    ],
-)
+progs = [
+    'linear',
+    'sine',
+    'rainbow',
+]
+
+foreach prog : progs
+    executable(
+        prog,
+        sources: [
+            prog + '.cpp',
+        ],
+        dependencies: [
+            libapp,
+            libcolor,
+        ],
+    )
+endforeach

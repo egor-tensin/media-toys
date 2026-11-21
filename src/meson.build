@@ -1,7 +1,3 @@
 subdir('colored_squares')
-subdir('rainbow')
-subdir('rainbow_bad')
+subdir('hsv')
 subdir('rgb')
-subdir('rgb_hsv')
-subdir('rgb_sin')
-subdir('rgb_sin_hsv')
