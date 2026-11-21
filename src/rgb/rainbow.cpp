@@ -27,10 +27,6 @@ private:
         RGB::from_hex(0x00'00'FF), // blue
         RGB::from_hex(0x4B'00'82), // indigo
         RGB::from_hex(0x8F'00'FF), // violet
-
-        // Black-to-white:
-        // RGB::from_hex(0x00'00'00),
-        // RGB::from_hex(0xFF'FF'FF),
     };
 
     float cycle_duration = 10.;

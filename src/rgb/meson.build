@@ -2,6 +2,7 @@ progs = [
     'linear',
     'sine',
     'rainbow',
+    'blackwhite',
 ]
 
 foreach prog : progs
