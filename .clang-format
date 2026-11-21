@@ -24,7 +24,7 @@ IncludeCategories:
     Priority: 1
   - Regex: '^<(app\.hpp|color\.hpp)>$'
     Priority: 2
-  - Regex: '^<SDL3\/'
+  - Regex: '^<(CLI\/|SDL3\/)'
     Priority: 3
   - Regex: '.*'
     Priority: 4

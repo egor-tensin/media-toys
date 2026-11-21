@@ -2,6 +2,7 @@
 
 #include <color.hpp>
 
+#include <CLI/CLI.hpp>
 #include <SDL3/SDL.h>
 
 #include <array>

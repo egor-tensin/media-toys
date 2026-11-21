@@ -1,8 +1,7 @@
 #pragma once
 
-#include <SDL3/SDL.h>
-
 #include <CLI/CLI.hpp>
+#include <SDL3/SDL.h>
 
 class App {
 public:
